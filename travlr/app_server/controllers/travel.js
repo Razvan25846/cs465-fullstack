@@ -1,26 +1,44 @@
 
-const Trip = require('../models/travlr');
+/* GET travel page using the REST API */
 
-/* GET travel page */
 const travel = async (req, res) => {
   try {
-    const trips = await Trip.find({}).lean();
+    const response = await fetch(
+      'http://localhost:3000/api/trips'
+    );
+
+    if (!response.ok) {
+      throw new Error(`API returned ${response.status}`);
+    }
+
+    const trips = await response.json();
 
     res.render('travel', {
       title: 'Travlr Getaways',
       trips
     });
+
   } catch (err) {
     console.error('Error retrieving trips:', err);
     res.status(500).send('Unable to load trips');
   }
 };
 
-/* GET trips as JSON */
+/* GET trips as JSON through the REST API */
+
 const travelList = async (req, res) => {
   try {
-    const trips = await Trip.find({}).lean();
+    const response = await fetch(
+      'http://localhost:3000/api/trips'
+    );
+
+    if (!response.ok) {
+      throw new Error(`API returned ${response.status}`);
+    }
+
+    const trips = await response.json();
     res.status(200).json(trips);
+
   } catch (err) {
     console.error('Error retrieving trips:', err);
     res.status(500).json({
