@@ -47,3 +47,4 @@ process.on('SIGTERM', async () => {
 
 // Load application models
 require('./travlr');
+require('../../app_api/models/user');
