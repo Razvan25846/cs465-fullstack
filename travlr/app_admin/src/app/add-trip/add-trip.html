@@ -1,0 +1,31 @@
+<div class="container">
+  <h2>Add New Trip</h2>
+
+  <form (ngSubmit)="onSubmit()">
+    <div *ngFor="let field of [
+      'code', 'name', 'length', 'start',
+      'resort', 'perPerson', 'image', 'description'
+    ]">
+      <label>{{ field }}</label>
+
+      <input
+        *ngIf="field !== 'description'"
+        type="text"
+        [name]="field"
+        [(ngModel)]="$any(trip)[field]"
+        required
+      />
+
+      <textarea
+        *ngIf="field === 'description'"
+        [name]="field"
+        [(ngModel)]="$any(trip)[field]"
+        required
+      ></textarea>
+    </div>
+
+    <button type="submit">Add Trip</button>
+  </form>
+
+  <p>{{ message }}</p>
+</div>

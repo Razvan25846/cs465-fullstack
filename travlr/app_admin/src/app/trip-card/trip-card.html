@@ -1,0 +1,16 @@
+<div class="card">
+  <div class="card-body">
+    <h2 class="card-title">{{ trip.name }}</h2>
+
+    <p><strong>Code:</strong> {{ trip.code }}</p>
+    <p><strong>Length:</strong> {{ trip.length }}</p>
+    <p><strong>Start:</strong> {{ trip.start }}</p>
+    <p><strong>Resort:</strong> {{ trip.resort }}</p>
+    <p><strong>Price:</strong> {{ trip.perPerson }}</p>
+    <p>{{ trip.description }}</p>
+    <a [routerLink]="['/edit-trip']"
+   [queryParams]="{ code: trip.code }">
+  <button type="button">Edit Trip</button>
+</a>
+  </div>
+</div>
